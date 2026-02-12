@@ -21,15 +21,14 @@ include_content = true
 index_format = "elasticlunr_json"
 
 [markdown]
-
 [markdown.highlighting]
 theme = "catppuccin-mocha"
 
 [extra]
 theme = "toggle"
 socials = [
-  { name = "twitter", url = "https://twitter.com/not_matthias", icon = "twitter" },
-  { name = "github", url = "https://github.com/not-matthias/", icon = "github" },
+  { name = "twitter", url = "https://twitter.com/Defect__", icon = "twitter" },
+  { name = "github", url = "https://github.com/DefectingCat", icon = "github" },
   { name = "rss", url = "/atom.xml", icon = "rss" },
 ]
 menu = [
