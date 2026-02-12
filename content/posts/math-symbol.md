@@ -1,6 +1,6 @@
 +++
 title = "Math Symbol Example"
-date = "2023-01-06"
+date = "1999-01-06"
 
 [taxonomies]
 tags=["example"]

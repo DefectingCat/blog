@@ -1,6 +1,6 @@
 +++
 title = "Configuring Apollo"
-date = "2024-07-09"
+date = "1999-12-12"
 
 [taxonomies]
 tags=["documentation"]
@@ -160,15 +160,16 @@ When enabled, you can create expandable/collapsible note sections in your blog p
 ## Character Shortcodes
 
 We support custom character shortcodes for adding dialogue and interactive characters to your blog posts. You can use them via [shortcodes](https://www.getzola.org/documentation/content/shortcodes/):
+
 ```
 {{ /* character(name="character-name", body="Character dialogue text") */ }}
 ```
 
 These are the supported parameters:
+
 - `name` (optional): The identifier for the character. Used to determine styling and appearance.
 - `body` (optional): The dialogue text for the character. Works with inline shortcodes.
 - `position` (optional): Position the character on the left or right. Values: "left" or default (right)
-
 
 {{ character(body="Isn't it amazing?") }}
 
@@ -176,11 +177,13 @@ These are the supported parameters:
 
 {% character() %}
 We can even use multiple lines with code:
+
 ```rust
 fn main() {
   println!("Hey there!");
 }
 ```
+
 {% end %}
 
 ## Anchor Links
@@ -194,6 +197,7 @@ insert_anchor_links = "heading"
 ## Taxonomy sorting
 
 You can sort the taxonomies page with the following config:
+
 ```toml
 [extra.taxonomies]
 sort_by = "page_count"         # e.g. name, page_count
@@ -201,6 +205,7 @@ reverse = true
 ```
 
 The `sort_by` argument is directly passed to the `sort_by` function:
+
 ```jinja
 {% set sort_by = config.extra.taxonomies.sort_by | default(value="name") %}
 {% set terms = terms | default(value=[]) | sort(attribute=sort_by) %}
@@ -219,6 +224,7 @@ The `sort_by` argument is directly passed to the `sort_by` function:
 ```
 
 Possible values include anything within the [TaxonomyTerm object](https://www.getzola.org/documentation/templates/taxonomies/):
+
 ```rust
 name: String;
 slug: String;
@@ -229,6 +235,7 @@ page_count: Number;
 ```
 
 Examples:
+
 - `name` to sort by name
 - `page_count` to sort by page count
 
@@ -320,13 +327,14 @@ comment = false
 Comments via [utterances](https://utteranc.es) can be configured in `template/_giscus_script.html` like this:
 
 ```html
-<script src="https://utteranc.es/client.js"
-        repo="YOUR_NAME/YOUR_REPO"
-        issue-term="pathname"
-        theme="github-light"
-        crossorigin="anonymous"
-        async>
-</script>
+<script
+  src="https://utteranc.es/client.js"
+  repo="YOUR_NAME/YOUR_REPO"
+  issue-term="pathname"
+  theme="github-light"
+  crossorigin="anonymous"
+  async
+></script>
 ```
 
 # Cards Page
@@ -405,6 +413,7 @@ The path resolution for `local_video` works the same as `local_image`:
 The `remote_video` front matter parameter allows you to specify a URL to a remote video file that will be displayed as the thumbnail for a page.
 
 Example usage:
+
 ```toml
 [extra]
 remote_video = "https://example.com/videos/demo.mp4"

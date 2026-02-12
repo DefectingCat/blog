@@ -1,6 +1,6 @@
 +++
 title = "Mermaid Example"
-date = "2024-12-26"
+date = "1999-12-02"
 
 [taxonomies]
 tags=["example"]
