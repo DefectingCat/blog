@@ -39,6 +39,7 @@ toc = true
 use_cdn = false
 fancy_code = true
 comment = false
+favicon = "/images/favicon.webp"
 
 [extra.analytics]
 enabled = false
