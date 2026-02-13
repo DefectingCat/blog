@@ -23,6 +23,12 @@ index_format = "elasticlunr_json"
 [markdown]
 [markdown.highlighting]
 theme = "catppuccin-mocha"
+# highlight_code = true
+# highlight_theme = "css"
+# highlight_themes_css = [
+#   { theme = "ayu-dark", filename = "syntax-theme-dark.css" },
+#   { theme = "ayu-light", filename = "syntax-theme-light.css" },
+# ]
 
 [extra]
 theme = "toggle"
