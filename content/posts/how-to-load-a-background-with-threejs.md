@@ -1,0 +1,146 @@
++++
+title = "How to load a background with three.js"
+date = "2022-04-13"
+
+[taxonomies]
+tags = [ "three.js", "JavaScript",]
++++
+
+## Three.js setup
+
+First, we need a little of setup. Let's create a scene and a camera.
+
+```ts
+const scene = new THREE.Scene();
+
+const camera = new THREE.PerspectiveCamera(
+  75,
+  window.innerWidth / window.innerHeight,
+  0.1,
+  1000,
+);
+```
+
+The default camera position is in the center at `(0, 0, 0)`.
+
+And now, We need render scene into our document. So we need a WebGL renderer.
+
+```ts
+const renderer = new THREE.WebGLRenderer({
+  canvas: document.querySelector('#canvas')
+  antialias: true,  // for performance reason, we will trun off antialias
+});
+```
+
+With a little of setup:
+
+```ts
+renderer.setPixelRatio(window.devicePixelRatio);
+renderer.setSize(window.innerWidth, window.innerHeight);
+```
+
+Render to screen :
+
+```ts
+renderer.render(scene, camera);
+```
+
+Now, we can get a black canvas in our document.
+
+<RUASandpack
+  template="react"
+  files={{
+    "/App.js": sandpack["how-to-load-a-background-with-threejs"].firstScene,
+    "/styles.css":
+      sandpack["how-to-load-a-background-with-threejs"].resetStyles,
+  }}
+  customSetup={{
+    dependencies: {
+      "stats.js": "^0.17.0",
+      three: "^0.139.2",
+      "lil-gui": "^0.16.1",
+    },
+  }}
+/>
+
+## Load a skyboxes
+
+Image a camera inside a cube box. The cube box is our scene. just like `const scene = new THREE.Scene();`. The camera is our perspect camera.
+
+```ts
+new THREE.PerspectiveCamera();
+```
+
+Now, we are inside the cube box. The inside texture of the box is our sky. Our camera can see all six texture surround ours give ours the illusion the we are within a larger environment.
+
+We know how sky boxes works. But what is a sky boxes?
+
+### Texture
+
+We need set texture to cube box each side. so we need six pictures.
+
+The skybox is six images that can be connected each other.
+
+{{ image(path="/images/how-to-load-a-background-with-threejs/Skybox_example.png", alt="Skybox 示例") }}
+
+We just need load six images in some order, and set them to the scene background.
+
+```ts
+import corona_bk from "assets/first-project/skyboxes/corona_bk.png";
+import corona_dn from "assets/first-project/skyboxes/corona_dn.png";
+import corona_ft from "assets/first-project/skyboxes/corona_ft.png";
+import corona_lf from "assets/first-project/skyboxes/corona_lf.png";
+import corona_rt from "assets/first-project/skyboxes/corona_rt.png";
+import corona_up from "assets/first-project/skyboxes/corona_up.png";
+
+const sky = new THREE.CubeTextureLoader(manager).load([
+  corona_ft,
+  corona_bk,
+  corona_up,
+  corona_dn,
+  corona_rt,
+  corona_lf,
+]);
+scene.background = sky;
+```
+
+The order is:
+
+1. front
+2. back
+3. up
+4. down
+5. right
+6. left
+
+If load textrue successfully. we can see some picture of six pictures.
+
+That's not enough. We are in 3D world, we need to loot around in the cubebox. So we need add a control.
+
+```ts
+const controls = new OrbitControls(camera, ref.current!);
+controls.enablePan = false;
+controls.update();
+```
+
+<RUASandpack
+  template="react"
+  files={{
+    "/App.js": sandpack["how-to-load-a-background-with-threejs"].loadBackground,
+    "/styles.css":
+      sandpack["how-to-load-a-background-with-threejs"].resetStyles,
+  }}
+  customSetup={{
+    dependencies: {
+      "stats.js": "^0.17.0",
+      three: "^0.139.2",
+      "lil-gui": "^0.16.1",
+    },
+  }}
+/>
+
+For OrbitControls, the camera must be in not default position. I set it to `(0, 1, 0)`.
+
+Also, we need set to the camera up vector `camera.up.set(0, 0, 1);`.
+
+> OrbitControls must execute update method after that it created `controls.update();`
