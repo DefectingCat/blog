@@ -1,5 +1,6 @@
 # The URL the site will be built for
 base_url = "https://rua.plus"
+# base_url = "http://localhost:3002"
 title = "xfy"
 generate_feeds = true
 feed_filenames = ["atom.xml", "rss.xml"]
