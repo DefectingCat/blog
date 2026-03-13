@@ -3,7 +3,7 @@ title = "Hello world"
 date = "2022-04-06"
 
 [taxonomies]
-tags = [ "Hello world",]
+tags = [ "Hello world" ]
 +++
 
 ## Hello
@@ -11,14 +11,9 @@ tags = [ "Hello world",]
 This is my first post!
 
 ```ts
-console.log('Hello world');
+console.log("Hello world");
 ```
 
 ## Say hello to world
 
-<RUASandpack
-  template="react"
-  files={{
-    '/App.js': sandpack['hello-world'].hello,
-  }}
-/>
+Hello World!
